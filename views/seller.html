@@ -1,0 +1,42 @@
+<!doctype html>
+<head>
+  <meta charset="utf-8">
+  <title>Seller Portal</title>
+  <meta name="description" content="Seller">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="/css/styles.css">
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script type="text/javascript" src="https://www.parsecdn.com/js/parse-latest.js"></script>
+  <script type="text/javascript">
+    Parse.initialize("p5I9NyojKedE07IADm4FjywrHKBWorN7H3zMfcjC", "XCSCYfLiUBq9glZGkzKfpxSecW0jOvU2PjatEALr");
+    var currentUser = Parse.User.current();
+    if(currentUser){
+      var username = currentUser.get("name");
+      console.log("current user is: " + username)
+    }
+  </script>
+  <script type="text/javascript" src="/js/login.js"></script>
+  <script type="text/javascript" src="/js/seller_api.js"></script>
+</head>
+
+<body>
+  <div id="main">
+    <p id="hello"></p>
+    <form id="seller-form">
+      <input type="text" placeholder="brand" name="brand" value="test"><br>
+      <input type="file" name="image" id="image" accept="image/*"><br>
+      <img id="preview" src="#" alt="your image" /><br>
+      <p id="submitted">submitted!</p>
+      <input type="submit">
+    </form>
+  </div>
+
+
+  <button id="fb-login-btn" scope="public_profile,email" onclick="loginToFacebook()">login
+  </button>
+
+  <button id="fb-logout-btn" onclick="logout()">logout</button>
+
+</body>
+
+</html>

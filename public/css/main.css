@@ -1,0 +1,110 @@
+html{
+  background: no-repeat center center fixed;
+  background-image: url('http://49.media.tumblr.com/7641c09ed5fa592af5e29cb833b67563/tumblr_nj78vmNvmG1rpgfoho3_500.gif');
+  overflow: hidden;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-color: black;
+  color:white;
+}
+@font-face {
+     font-family: Moriston-Medium;
+     src: url('/css/Moriston_Personal_License/MoristonPersonal_OTF/MoristonPersonal-Medium.otf');
+}
+@font-face {
+     font-family: Moriston-Light;
+     src: url('/css/Moriston_Personal_License/MoristonPersonal_OTF/MoristonPersonal-Light.otf');
+}
+
+#sign{
+  width: 300px;
+  margin-left: 65%;
+  margin-top:180px;
+  padding-top: 25px;
+  padding-bottom: 20px;
+  border-radius: 2px;
+  /*box-shadow: 2px 2px 10px rgba(110, 108, 73, 0.2);*/
+}
+#cover{
+  position: fixed;
+  right: 0;
+  height: 100%;
+  width: 180px;
+  margin: 0;
+  background-color: black;
+}
+h1{
+  font-family: 'Moriston-Medium';
+  margin: 0;
+  color: rgba(228, 225, 226, 1);
+  margin-bottom: 10px;
+  opacity: .95;
+}
+input[type="text"], textarea {
+  font-size: 15px;
+  background-color : rgba(0,0,0,0);
+  padding: 5px;
+  border-radius: 2px;
+  border-style: solid;
+  border-color: rgba(255,255,255,.5);
+  font-family: 'Moriston-Light';
+}
+form{
+  color: rgba(228, 225, 226, 1)!important;
+}
+input[type="text"], textarea {
+    border: 0;
+    outline: 0;
+    background: transparent;
+    border-bottom: 2px solid rgba(228, 225, 226, .95);
+    color:white
+}
+input[type="checkbox"] {
+  color: rgba(228, 225, 226, 1)!important;
+  margin: 5px;
+
+}
+::-webkit-input-placeholder{
+  color: rgba(228, 225, 226, 1)!important;
+
+}
+input:focus {
+    outline: none !important;
+}
+@media screen and (max-width: 1150px){
+  #cover{
+    display: none!important;
+  }
+}
+
+@media only screen and (max-device-width: 480px) {
+  html{
+    background: no-repeat center center fixed;
+    background-image: url('http://49.media.tumblr.com/7641c09ed5fa592af5e29cb833b67563/tumblr_nj78vmNvmG1rpgfoho3_500.gif');
+    overflow: hidden;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-color: black;
+    color:white;
+  }
+  #sign{
+    margin: 0;
+    margin-top: 350px;
+  }
+  body{
+    overflow: hidden;
+  }
+  h1{
+    font-size: 30px;
+  }
+  input[type="text"], textarea {
+    font-size: 18px;
+  }
+  #cover{
+    display: none;
+
+	}

@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Theo</title>
+  <meta name="description" content="My Parse App">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="css/main.css">
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script type="text/javascript" src="http://www.parsecdn.com/js/parse-latest.js"></script>
+</head>
+
+<body>
+  <div id="sign">
+    <form>
+      <h1>Join Theo</h1>
+      <input type="text" name="email" autocomplete="off"  placeholder="email"><br>
+    </form>
+    <h2 id="thanks" style="display:none">talk soon</h2>
+  </div>
+  <div id="cover"></div>
+<script>
+Parse.initialize("p5I9NyojKedE07IADm4FjywrHKBWorN7H3zMfcjC", "XCSCYfLiUBq9glZGkzKfpxSecW0jOvU2PjatEALr");
+
+  $('form').submit(function(){
+      var email = $('form input[name="email"]').val()
+      var Signup = Parse.Object.extend("Signups");
+      var signup = new Signup();
+      signup.set("email", email);
+      signup.save(null, {
+        success: function(item) {
+          console.log('yep')
+          $('form').hide()
+          console.log($('#thanks'))
+          $('#thanks').show()
+          return false
+        },
+        error: function(model, error) {
+          console.log('nope')
+          return false
+        }
+      });
+      return false;
+  });
+
+</script>
+</body>
+
+</html>

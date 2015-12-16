@@ -1,0 +1,42 @@
+<!doctype html>
+<head>
+  <meta charset="utf-8">
+  <title>Expert Portal</title>
+  <meta name="description" content="My Parse App">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="/css/styles.css">
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script type="text/javascript" src="https://www.parsecdn.com/js/parse-latest.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script type="text/javascript">
+    Parse.initialize("p5I9NyojKedE07IADm4FjywrHKBWorN7H3zMfcjC",
+    "XCSCYfLiUBq9glZGkzKfpxSecW0jOvU2PjatEALr");
+    var currentUser = Parse.User.current();
+    if(currentUser){
+      var username = currentUser.get("name");
+      console.log("current user is: " + username)
+    }
+  </script>
+  <script type="text/javascript" src="/js/login.js"></script>
+  <script type="text/javascript" src="/js/expert_api.js"></script>
+  <script type="text/javascript" src="/js/expert_init.js"></script>
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-1">
+        <p>what goes well?</p>
+        <button id="save">save</button>
+      </div>
+      <div class="col-md-4">
+        <img id="compare" src="#"/>
+      </div>
+    </div>
+    <div id="parse-images" class="row"></div>
+  </div>
+
+
+</body>
+
+</html>

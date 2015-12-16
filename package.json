@@ -1,0 +1,25 @@
+{
+  "name": "theo",
+  "version": "1.0.0",
+  "description": "marketplace to find dope items from indie designers",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "babel-preset-react": "^6.3.13",
+    "babelify": "^7.2.0",
+    "body-parser": "^1.13.1",
+    "ejs": "0.8.5",
+    "express": "^4.0.0",
+    "livereload": "^0.4.0",
+    "parse": "^1.6.9",
+    "react": "^0.14.3",
+    "react-dom": "^0.14.3",
+    "sendgrid": "^1.9.2"
+  },
+  "author": "Kevin Tan",
+  "license": "ISC",
+  "devDependencies": {}
+}
