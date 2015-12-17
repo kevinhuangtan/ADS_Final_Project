@@ -5,7 +5,7 @@ For my final project I implemented a system that recommends new clothing items b
 
 ###Overview
 The user will see a feed of items sampled randomly from the database. When the user selects one item, it will be added to the cart on the right.
-The feed is created using infinite scroll that updates with items from the database as the user scrolls down. Check out the implementation [here](http://www.theo.clothing)
+The feed is created using infinite scroll that updates with items from the database as the user scrolls down. Check out the final live project [here](http://www.theo.clothing)
 
 
 ###Architecture
