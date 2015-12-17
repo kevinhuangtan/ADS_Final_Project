@@ -1,41 +1,83 @@
-APPLICATION_ID = "p5I9NyojKedE07IADm4FjywrHKBWorN7H3zMfcjC"
-REST_API_KEY = "9lnS6G72fyFJ72Nm6ThDz2o9Y7CuOY9FtityL8Wh"
-MASTER_KEY = "P3raIT3X0QDX23OxScil9aaYHJ74Zw4YoxQcNBOJ"
-
-from parse_rest.connection import register
-from parse_rest.datatypes import Object
-
-register(APPLICATION_ID, REST_API_KEY)
-
-Item = Object.factory("Item")
-items = Item.Query.all().order_by("seller_name")
+import json,httplib,urllib
+import os
 
 
-import networkx as nx
-import matplotlib.pyplot as plt
-#
-nodes = [item.objectId for item in items] #ids of items
 
-G = nx.Graph() # graph with items
-for item in items:
-    try:
-        edges = item.edges
-        G.add_node(item.objectId)
-        for e in edges:
-            G.add_edge(item.objectId, e, weight = edges[e])
-    except AttributeError:
-        pass
+PARSE_APP_ID = "p5I9NyojKedE07IADm4FjywrHKBWorN7H3zMfcjC"
+PARSE_REST_API_KEY = "9lnS6G72fyFJ72Nm6ThDz2o9Y7CuOY9FtityL8Wh"
 
-ehuge=[(u,v) for (u,v,d) in G.edges(data=True) if d['weight'] > 6.0]
-elarge=[(u,v) for (u,v,d) in G.edges(data=True) if (d['weight'] >3.0 and d['weight'] <= 6.0)]
-esmall=[(u,v) for (u,v,d) in G.edges(data=True) if d['weight'] <=3.0]
-pos=nx.spring_layout(G)
+def print_json(result):
+    print json.dumps(result, indent=4, sort_keys=True)
 
-nx.draw_networkx_nodes(G,pos,node_size=700)
-nx.draw_networkx_edges(G,pos,edgelist=ehuge, edge_color='r',
-                    width=6)
-nx.draw_networkx_edges(G,pos,edgelist=elarge,
-                    width=4)
-nx.draw_networkx_edges(G,pos,edgelist=esmall,
-                    width=2,alpha=0.5,edge_color='b',style='dashed')
-plt.show()
+
+def retrieve_all():
+    connection = httplib.HTTPSConnection('api.parse.com', 443)
+    connection.connect()
+    connection.request('GET', '/1/classes/Item', '', {
+           "X-Parse-Application-Id": PARSE_APP_ID,
+           "X-Parse-REST-API-Key": PARSE_REST_API_KEY
+         })
+    result = json.loads(connection.getresponse().read())
+    return result
+
+def delete_object(objectId):
+    connection = httplib.HTTPSConnection('api.parse.com', 443)
+    connection.connect()
+    connection.request('DELETE', '/1/classes/Item/'+objectId, '', {
+           "X-Parse-Application-Id": PARSE_APP_ID,
+           "X-Parse-REST-API-Key": PARSE_REST_API_KEY
+         })
+    result = json.loads(connection.getresponse().read())
+    return result
+
+def delete_brand(brand):
+    z = retrieve_brand(brand)
+    results = z['results']
+    for res in results:
+        delete_object(res['objectId'])
+
+
+def retrieve_brand(brand):
+    connection = httplib.HTTPSConnection('api.parse.com', 443)
+    params = urllib.urlencode({"where":json.dumps({
+           "brand": brand,
+         })})
+    connection.connect()
+    connection.request('GET', '/1/classes/Item?%s' % params, '', {
+           "X-Parse-Application-Id": PARSE_APP_ID,
+           "X-Parse-REST-API-Key": PARSE_REST_API_KEY
+         })
+    result = json.loads(connection.getresponse().read())
+    return result
+
+
+def create_item(brand, image):
+    connection = httplib.HTTPSConnection('api.parse.com', 443)
+    connection.connect()
+    connection.request('POST', '/1/files/'+brand+'.jpg', open(image, 'rb').read(), {
+           "X-Parse-Application-Id":  PARSE_APP_ID,
+           "X-Parse-REST-API-Key": PARSE_REST_API_KEY,
+           "Content-Type": "image/jpeg"
+         })
+    new_file = json.loads(connection.getresponse().read())
+    return new_file
+
+    connection.request('POST', '/1/classes/Item', json.dumps({
+           "brand": brand,
+           "image": {
+             "name": new_file['name'],
+                "url" : new_file['url'],
+             "__type": "File"
+           }
+         }), {
+           "X-Parse-Application-Id": PARSE_APP_ID,
+           "X-Parse-REST-API-Key": PARSE_REST_API_KEY,
+           "Content-Type": "application/json"
+         })
+    result = json.loads(connection.getresponse().read())
+
+def add_images(brand):
+    folder = './designers/'+brand+'/'
+    for filename in os.listdir(folder):
+        print filename
+        create_item(brand, folder + filename)

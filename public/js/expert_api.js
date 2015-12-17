@@ -19,13 +19,22 @@ function set_key_image(items, random_sample){
 function set_sampled_images(items, random_sample){
   for (var i = 1; i < random_sample.length; i++){
     var image = items[random_sample[i]].get("image")
-    var appended_image = "<div class='col-sm-2'><img class='test-pic' data-index = '" + random_sample[i] +"' src='"+ image._url + "'/></div>"
+    var appended_image = "<div class='col-sm-2 expert-panel'><img class='test-pic' data-index = '" + random_sample[i] +"' src='"+ image._url + "'/></div>"
     $('#parse-images').append(appended_image)
   }
 }
-function set_selected(items, selected_images, random_sample, existing_edges){
+function set_selected(items, selected_images, random_sample){
+  selected_edges = {}
   for (var i = 0; i < selected_images.length; i++){
     var edge = items[selected_images[i]]['id']
+    selected_edges[edge] = 1
+  }
+  console.log(selected_edges)
+  return selected_edges
+  // items[random_sample[0]].set("edges", selected_edges)
+}
+function merge_edges(existing_edges, selected_edges){
+  for(edge in selected_edges){
     if(edge in existing_edges){
       existing_edges[edge] += 1
     }
@@ -33,5 +42,5 @@ function set_selected(items, selected_images, random_sample, existing_edges){
       existing_edges[edge] = 1
     }
   }
-  items[random_sample[0]].set("edges", existing_edges)
+  return existing_edges
 }

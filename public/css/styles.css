@@ -1,7 +1,16 @@
+@font-face {
+     font-family: Moriston-Medium;
+     src: url('/css/Moriston_Personal_License/MoristonPersonal_OTF/MoristonPersonal-Medium.otf');
+}
+@font-face {
+     font-family: Moriston-Light;
+     src: url('/css/Moriston_Personal_License/MoristonPersonal_OTF/MoristonPersonal-Light.otf');
+}
 body {
     background: #eee;
     text-align: center;
     padding: 0 25px;
+    font-family: 'Moriston-Medium'!important;
 }
 
 #main {
@@ -48,32 +57,12 @@ input{
 #preview{
   height:80px;
 }
-.col-md-3{
-  height: 150px;
-  /*background-color: rgb(94, 113, 33);*/
-}
-.test-pic{
-  height: 150px;
-  cursor:pointer;
-}
 
-#compare{
-  height: 200px;
-  width: auto
-}
 .row{
   margin-left:0!important;
   margin-right: 0!important;
 }
-.selected{
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  border-radius: 10px 10px 10px 10px;
-  -moz-border-radius: 10px 10px 10px 10px;
-  -webkit-border-radius: 10px 10px 10px 10px;
-  border: 2px solid #000000;
-}
+
 div{
   margin: 20px;
 }

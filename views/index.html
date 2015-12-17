@@ -19,31 +19,31 @@
     <h2 id="thanks" style="display:none">talk soon</h2>
   </div>
   <div id="cover"></div>
-<script>
-Parse.initialize("p5I9NyojKedE07IADm4FjywrHKBWorN7H3zMfcjC", "XCSCYfLiUBq9glZGkzKfpxSecW0jOvU2PjatEALr");
 
-  $('form').submit(function(){
-      var email = $('form input[name="email"]').val()
-      var Signup = Parse.Object.extend("Signups");
-      var signup = new Signup();
-      signup.set("email", email);
-      signup.save(null, {
-        success: function(item) {
-          console.log('yep')
-          $('form').hide()
-          console.log($('#thanks'))
-          $('#thanks').show()
-          return false
-        },
-        error: function(model, error) {
-          console.log('nope')
-          return false
-        }
-      });
-      return false;
-  });
+  <script>
+    Parse.initialize("p5I9NyojKedE07IADm4FjywrHKBWorN7H3zMfcjC", "XCSCYfLiUBq9glZGkzKfpxSecW0jOvU2PjatEALr");
+    $('form').submit(function(){
+        var email = $('form input[name="email"]').val()
+        var Signup = Parse.Object.extend("Signups");
+        var signup = new Signup();
+        signup.set("email", email);
+        signup.save(null, {
+          success: function(item) {
+            console.log('yep')
+            $('form').hide()
+            console.log($('#thanks'))
+            $('#thanks').show()
+            return false
+          },
+          error: function(model, error) {
+            console.log('nope')
+            return false
+          }
+        });
+        return false;
+    });
 
-</script>
+  </script>
 </body>
 
 </html>

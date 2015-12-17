@@ -17,7 +17,7 @@ app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'ejs');
 
 var livereload = require('livereload');
-// 
+//
 // require('./public/js/expert_api');
 // require('./public/js/expert_init');
 // require('./public/js/login');
@@ -34,7 +34,7 @@ reloadServer.watch([__dirname + "/public/css", __dirname + "/public/js", __dirna
 
 app.get('/', function (req, res)
 {
-    res.render('index.html');
+    res.render('user.html');
 });
 
 app.get('/user', function (req, res)
